@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ContentWriterService.Messaging;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContentWriterService.Controllers
@@ -7,10 +8,18 @@ namespace ContentWriterService.Controllers
     [Route("[controller]")]
     public class ContentWriterController : Controller
     {
-        [HttpGet("/create")]
-        public String createData()
+        private readonly KafkaController _kafkaController;
+        
+        public ContentWriterController(KafkaController kafkaController)
         {
-            return "works";
+            _kafkaController = kafkaController;
+        }
+
+        [HttpPost("/create")]
+        public async Task<IActionResult> addContent([FromBody] string message)
+        {
+            await _kafkaController.ProduceAsync("testtopic", message);
+            return Ok();
         }
     }
 }
