@@ -18,7 +18,7 @@ namespace ContentWriterService.Controllers
         [HttpPost("/create")]
         public async Task<IActionResult> addContent([FromBody] string message)
         {
-            await _kafkaController.ProduceAsync("testtopic", message);
+            await _kafkaController.ProduceAsync("NEW_CONTENT", message);
             return Ok();
         }
     }
