@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  DOCKER_USERNAME: bartvnim
+  DOCKERHUB_USERNAME: bartvnim
   IMAGE_NAME: trackpackers-contentwriting
 
 jobs:
