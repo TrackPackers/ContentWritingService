@@ -5,6 +5,9 @@ namespace ContentWriterService.Models
 {
     public class Content
     {
-        public string Text { get; set; }
+        public ObjectId Id { get; set; }
+        public string Name { get; set; }
+        public string Message { get; set; }
+        public DateTime CreatedAT { get; set; }
     }
 }
