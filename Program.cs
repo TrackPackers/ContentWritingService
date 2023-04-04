@@ -1,10 +1,18 @@
+using System;
 using ContentWriterService.Context;
 using ContentWriterService.Messaging;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+    .AddEnvironmentVariables();
+
+var mongoUri = builder.Configuration.GetValue<string>("MONGODB_URI");
+
 // Add services to the container.
-builder.Services.AddSingleton(new DbContentContext("mongodb://localhost:27017", "ContentWriterDB"));
+builder.Services.AddSingleton(new DbContentContext(mongoUri, "ContentWriterDB"));
 builder.Services.AddSingleton<KafkaController>();
 
 builder.Services.AddControllers();

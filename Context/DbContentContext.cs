@@ -10,6 +10,7 @@ namespace ContentWriterService.Context
 
         public DbContentContext(string connectionString, string databaseName) : base(connectionString)
         {
+            Console.WriteLine(connectionString);
             _database = GetDatabase(databaseName);
             Contents = _database.GetCollection<Content>("contents");
         }
