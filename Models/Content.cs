@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using MongoDB.Bson;
 using System.Runtime.Serialization;
 
 namespace ContentWriterService.Models
@@ -9,5 +10,10 @@ namespace ContentWriterService.Models
         public string Name { get; set; }
         public string Message { get; set; }
         public DateTime CreatedAT { get; set; }
+
+        public Content()
+        {
+            this.CreatedAT = DateTime.UtcNow;
+        }
     }
 }
