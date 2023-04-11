@@ -9,11 +9,11 @@ namespace ContentWriterService.Models
         public ObjectId Id { get; set; }
         public string Name { get; set; }
         public string Message { get; set; }
-        public DateTime CreatedAT { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         public Content()
         {
-            this.CreatedAT = DateTime.UtcNow;
+            this.CreatedAt = DateTime.UtcNow;
         }
     }
 }
