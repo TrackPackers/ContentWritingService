@@ -5,6 +5,6 @@ namespace ContentWriterService.Context.Interfaces
 {
     public interface IDbContentContext
     {
-        public IMongoCollection<Content> Contents { get; }
+        public IMongoCollection<Content> Contents { get; set; }
     }
 }

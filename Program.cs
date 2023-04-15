@@ -3,6 +3,8 @@ using ContentWriterService.Context;
 using ContentWriterService.Messaging;
 using ContentWriterService.Services;
 using ContentWriterService.Services.Interfaces;
+using ContentWriterService.Messaging.Interfaces;
+using ContentWriterService.Context.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +16,9 @@ builder.Configuration
 var mongoUri = builder.Configuration.GetValue<string>("MONGODB_URI");
 
 // Add services to the container.
-builder.Services.AddSingleton(new DbContentContext(mongoUri, "ContentWriterDB"));
+builder.Services.AddSingleton<IDbContentContext>(new DbContentContext(mongoUri, "ContentWriterDB"));
+builder.Services.AddScoped<IKafkaController, KafkaController>();
+
 builder.Services.AddSingleton<KafkaController>();
 builder.Services.AddScoped<IContentService, ContentService>();
 

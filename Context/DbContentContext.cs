@@ -8,7 +8,7 @@ namespace ContentWriterService.Context
     public class DbContentContext : MongoClient, IDbContentContext
     {
         private readonly IMongoDatabase _database;
-        public IMongoCollection<Content> Contents { get; }
+        public IMongoCollection<Content> Contents { get; set; }
 
         public DbContentContext(string connectionString, string databaseName) : base(connectionString)
         {
@@ -16,5 +16,10 @@ namespace ContentWriterService.Context
             Contents = _database.GetCollection<Content>("contents");
         }
 
+
+        public DbContentContext(IMongoCollection<Content> contents)
+        {
+            Contents = contents;
+        }
     }
 }
