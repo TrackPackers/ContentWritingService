@@ -1,10 +1,6 @@
-﻿using ContentWriterService.Context;
-using ContentWriterService.Messaging;
-using ContentWriterService.Models;
-using ContentWriterService.Services;
-using Microsoft.AspNetCore.Http;
+﻿using ContentWriterService.Models;
+using ContentWriterService.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson.IO;
 
 namespace ContentWriterService.Controllers
 {
@@ -12,9 +8,9 @@ namespace ContentWriterService.Controllers
     [Route("[controller]")]
     public class ContentWriterController : Controller
     {
-        private readonly ContentService _contentService;
+        private readonly IContentService _contentService;
         
-        public ContentWriterController(ContentService contentService)
+        public ContentWriterController(IContentService contentService)
         {
             _contentService = contentService;
         }
