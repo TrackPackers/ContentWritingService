@@ -30,8 +30,8 @@ namespace ContentWriterService.Tests
             var content = new Content
             {
                 Id = new MongoDB.Bson.ObjectId(),
-                Name = "NameTest",
-                Message = "MessageTest"
+                Name = "Test_NAME",
+                Message = "Test_MESSAGE"
             };
 
             // Act
