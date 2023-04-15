@@ -1,8 +1,9 @@
 ﻿using Confluent.Kafka;
+using ContentWriterService.Messaging.Interfaces;
 
 namespace ContentWriterService.Messaging
 {
-    public class KafkaController
+    public class KafkaController : IKafkaController
     {
         private readonly ProducerConfig _config;
 

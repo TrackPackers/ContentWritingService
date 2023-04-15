@@ -14,6 +14,5 @@ namespace ContentWriterService.Context
             Contents = _database.GetCollection<Content>("contents");
         }
 
-
     }
 }
