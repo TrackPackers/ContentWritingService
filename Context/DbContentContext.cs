@@ -1,4 +1,5 @@
-﻿using ContentWriterService.Models;
+﻿using ContentWriterService.Context.Interfaces;
+using ContentWriterService.Models;
 using ContentWriterService.Services;
 using MongoDB.Driver;
 
