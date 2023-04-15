@@ -1,9 +1,6 @@
-﻿using ContentWriterService.Context;
-using ContentWriterService.Messaging;
-using ContentWriterService.Models;
-using Microsoft.AspNetCore.Http;
+﻿using ContentWriterService.Models;
+using ContentWriterService.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson.IO;
 
 namespace ContentWriterService.Controllers
 {
@@ -11,21 +8,17 @@ namespace ContentWriterService.Controllers
     [Route("[controller]")]
     public class ContentWriterController : Controller
     {
-        private readonly KafkaController _kafkaController;
-        private readonly DbContentContext _dbContentContext;
+        private readonly IContentService _contentService;
         
-        public ContentWriterController(KafkaController kafkaController, DbContentContext dbContentContext)
+        public ContentWriterController(IContentService contentService)
         {
-            _kafkaController = kafkaController;
-            _dbContentContext = dbContentContext;
+            _contentService = contentService;
         }
 
         [HttpPost("/create")]
-        public async Task<IActionResult> addContent([FromBody] Content content)
+        public async Task<ActionResult<Content>> addContent([FromBody] Content content)
         {
-            await _dbContentContext.Contents.InsertOneAsync(content);
-            await _kafkaController.ProduceAsync("NEW_CONTENT", Newtonsoft.Json.JsonConvert.SerializeObject(content));
-            return Ok();
+           return await _contentService.addContent(content);
         }
     }
 }
