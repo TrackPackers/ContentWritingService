@@ -18,6 +18,9 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
 
+      - name: Install coverlet
+        run: dotnet tool install -g coverlet.console
+  
       - name: list packages
         run: dotnet list package
 
