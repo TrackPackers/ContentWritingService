@@ -18,15 +18,6 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
 
-      - name: Install coverlet
-        run: dotnet tool install -g coverlet.console
-  
-      - name: list packages
-        run: dotnet list package
-
-      - name: Build
-        run: dotnet build --no-restore /p:ContinuousIntegrationBuild=true
-
       - name: Test
         run: dotnet test ContentWriterService.csproj /p:CollectCoverage=true /p:IncludeTestAssembly=true /p:CoverletOutputFormat=opencover /p:ExcludeByFile=\"**/Microsoft.NET.Test.Sdk.Program.cs\"
 
