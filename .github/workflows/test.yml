@@ -22,7 +22,7 @@ jobs:
         run: dotnet build --no-restore /p:ContinuousIntegrationBuild=true
 
       - name: Test
-        run: dotnet test ContentWriterService.csproj /p:CollectCoverage=true /p:IncludeTestAssembly=true /p:CoverletOutputFormat=cobertura /p:ExcludeByFile=\"**/Microsoft.NET.Test.Sdk.Program.cs\"
+        run: dotnet test ContentWriterService.csproj /p:CollectCoverage=true /p:IncludeTestAssembly=true /p:CoverletOutputFormat=opencover /p:ExcludeByFile=\"**/Microsoft.NET.Test.Sdk.Program.cs\"
 
       - name: Codecov
         uses: codecov/codecov-action@v3
