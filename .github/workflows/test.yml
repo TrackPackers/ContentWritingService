@@ -18,6 +18,9 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
 
+      - name: list packages
+        run: dotnet list package
+
       - name: Build
         run: dotnet build --no-restore /p:ContinuousIntegrationBuild=true
 
