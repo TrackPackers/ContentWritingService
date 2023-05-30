@@ -17,10 +17,9 @@ var mongoUri = builder.Configuration.GetValue<string>("MONGODB_URI");
 
 // Add services to the container.
 builder.Services.AddSingleton<IDbContentContext>(new DbContentContext(mongoUri, "ContentWriterDB"));
-builder.Services.AddScoped<IKafkaController, KafkaController>();
-
-builder.Services.AddSingleton<KafkaController>();
-builder.Services.AddScoped<IContentService, ContentService>();
+builder.Services.AddSingleton<IKafkaController, KafkaController>();
+builder.Services.AddSingleton<IContentService, ContentService>();
+builder.Services.AddHostedService<KafkaConsumer>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

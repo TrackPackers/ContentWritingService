@@ -2,6 +2,8 @@
 using ContentWriterService.Models;
 using ContentWriterService.Services.Interfaces;
 using ContentWriterService.Context.Interfaces;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace ContentWriterService.Services
 {
@@ -31,6 +33,18 @@ namespace ContentWriterService.Services
                 throw;
             }
 
+        }
+
+        public async Task deleteUser(string username)
+        {
+            try
+            {
+                await _dbContentContext.Contents.DeleteManyAsync(Builders<Content>.Filter.Eq("Name", username));
+            }
+            catch(Exception)
+            {
+                throw;
+            }
         }
     }
 }
